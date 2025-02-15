@@ -1,0 +1,4 @@
+tables=ScoreboardGames=SG, Tournaments=T,fields=T.Name,T.Region,T.TournamentLevel,T.IsOfficial,T.Date,where=T.TournamentLevel='Primary' AND 
+                         T.isOfficial='1' AND
+                         T.Date >= '2025-01-01',join_on=SG.OverviewPage=T.OverviewPage,limit=2000
+None
