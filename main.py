@@ -1,12 +1,22 @@
 from lolfandom import lolfandom_api
-from typing import Union
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 LolFandomAPI = lolfandom_api.LolFandomAPI()
 
-LolFandomAPI.getCurrentTournaments()
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins (change for production)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# LolFandomAPI.getTeamCurrentPlayers('ESUG Ultimate Five Feeder')
+
+# start: cd fullstack/esports-predictor && python -m uvicorn main:app --reload
 
 # kill 
 # CMD+R: taskkill /f /im python.exe
@@ -18,3 +28,12 @@ def read_root():
 @app.get("/currentTournaments")
 def readCurrentTournaments():
     return LolFandomAPI.getCurrentTournaments()
+
+@app.get("/tournaments/{name}/rosters")
+def getTournamentRosters(name: str):
+    print(name)
+    return LolFandomAPI.getTournamentRosters(name)
+
+# @app.get("/teams/{name}/currentPlayers")
+# def getTeamCurrentPlayers(name: str):
+#     return LolFandomAPI.getTeamCurrentPlayers(name)

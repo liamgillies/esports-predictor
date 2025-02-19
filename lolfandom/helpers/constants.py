@@ -3,6 +3,8 @@ import datetime as dt
 class TABLES:
     Tournaments = 'Tournaments'
     ScoreboardGames = 'ScoreboardGames'
+    TournamentRosters = 'TournamentRosters'
+    ListplayerCurrent = 'ListplayerCurrent'
 
 class FIELDS:
     class Tournaments:
@@ -97,9 +99,40 @@ class FIELDS:
         RiotHash = 'RiotHash'
         RiotVersion = 'RiotVersion'
         ALL = [OverviewPage, Tournament, Team1, Team2, WinTeam, LossTeam, DateTime_UTC, DST, Team1Score, Team2Score, Winner, Gamelength, Gamelength_Number, Team1Bans, Team2Bans, Team1Picks, Team2Picks, Team1Players, Team2Players, Team1Dragons, Team2Dragons, Team1Barons, Team2Barons, Team1Towers, Team2Towers, Team1Gold, Team2Gold, Team1Kills, Team2Kills, Team1RiftHeralds, Team2RiftHeralds, Team1VoidGrubs, Team2VoidGrubs, Team1Atakhans, Team2Atakhans, Team1Inhibitors, Team2Inhibitors, Patch, LegacyPatch, PatchSort, MatchHistory, VOD, N_Page, N_MatchInTab, N_MatchInPage, N_GameInMatch, Gamename, UniqueLine, GameId, MatchId, RiotPlatformGameId, RiotPlatformId, RiotGameId, RiotHash, RiotVersion]
-
+    class TournamentRosters:
+        Team = 'Team'
+        OverviewPage = 'OverviewPage'
+        Region = 'Region'
+        RosterLinks = 'RosterLinks'
+        Roles = 'Roles'
+        Flags = 'Flags'
+        Footnotes = 'Footnotes'
+        IsUsed = 'IsUsed'
+        Tournament = 'Tournament'
+        Short = 'Short'
+        IsComplete = 'IsComplete'
+        PageAndTeam = 'PageAndTeam'
+        UniqueLine = 'UniqueLine'
+        ALL = [Team, OverviewPage, Region, RosterLinks, Roles, Flags, Footnotes, IsUsed, Tournament, Short, IsComplete, PageAndTeam, UniqueLine]
+    class ListplayerCurrent:
+        ID = 'ID'
+        Link = 'Link'
+        Name = 'Name'
+        N = 'N'
+        Country = 'Country'
+        Role = 'Role'
+        IsSubstitute = 'IsSubstitute'
+        IsTrainee = 'IsTrainee'
+        Team = 'Team'
+        ContractDate = 'ContractDate'
+        Residency = 'Residency'
+        ALL = [ID, Link, Name, N, Country, Role, IsSubstitute, IsTrainee, Team, ContractDate, Residency]
+        
 def getFormattedDate(day, month, year):
     return dt.datetime.strptime(f'{year}-{month}-{day}', "%Y-%m-%d").date()
+
+def getFormattedToday():
+    return dt.datetime.today().strftime('%Y-%m-%d')
 
 def getFields(tableVar, *fields):
     return ','.join([f'{tableVar}.{f}' for f in fields])

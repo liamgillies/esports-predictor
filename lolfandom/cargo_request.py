@@ -28,8 +28,6 @@ def makeCargoRequest(
         'auto_continue': auto_continue
     }
 
-    print(inputDict['tables'])
-
     for key, value in inputDict.items():
         if isinstance(value, list):
             inputDict[key] = ', '.join(value)
